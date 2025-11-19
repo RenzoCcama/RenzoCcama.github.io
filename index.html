@@ -1,153 +1,264 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RenzoCcama – Electric Grid Simulation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenzoCcama – Portfolio Énergie & Ingénierie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            margin: 0;
-            background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
-            overflow: hidden;
             font-family: Arial, sans-serif;
+            background: #0b1120;
             color: #e0f7ff;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .title {
-            position: absolute;
-            top: 20px;
-            width: 100%;
+        /* ⬅️ MENU LATERAL */
+        .sidebar {
+            width: 260px;
+            background: #101a33;
+            border-right: 2px solid #1e2a4a;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 22px;
+            margin-bottom: 20px;
             text-align: center;
-            font-size: 28px;
-            font-weight: bold;
             color: #4dd0e1;
-            text-shadow: 0 0 10px #4dd0e1;
+            text-shadow: 0 0 8px #4dd0e1;
         }
 
-        .subtitle {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 6px;
-        }
-
-        canvas {
+        .menu a {
             display: block;
+            padding: 14px;
+            margin-bottom: 8px;
+            color: #bbdefb;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        .menu a:hover {
+            background: #1e2a4a;
+            color: #80e8ff;
+        }
+
+        /* ➡️ CONTENU PRINCIPAL */
+        .content {
+            flex: 1;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            padding: 40px 60px;
+            min-height: 100vh;
+        }
+
+        h2 {
+            color: #4dd0e1;
+            text-shadow: 0 0 10px #26c6da;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* CANVAS ELECTRIC */
+        #canvas-electric {
+            width: 100%;
+            height: 70vh;
+            display: block;
+            border-radius: 14px;
+            border: 2px solid #1c2a40;
+            background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 
 <body>
-    <div class="title">
-        ⚡ Simulación del Flujo Eléctrico – RenzoCcama
-        <div class="subtitle">Generación → Transmisión → Distribución → Consumo</div>
+
+    <!-- MENU LATÉRAL -->
+    <nav class="sidebar">
+        <h1>RenzoCcama</h1>
+        <div class="menu">
+            <a href="#accueil">Accueil</a>
+            <a href="#apropos">À propos</a>
+            <a href="#projets">Projets</a>
+            <a href="#energie">Énergie</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="content">
+
+        <!-- ACCUEIL -->
+        <section id="accueil">
+            <h2>Simulation du Flux Électrique</h2>
+            <p>
+                Voici une visualisation animée représentant la génération, la transmission et la distribution d’électricité.
+                Conçue pour illustrer des concepts de réseaux intelligents (“smart grids”) et systèmes énergétiques.
+            </p>
+
+            <canvas id="canvas-electric"></canvas>
+        </section>
+
+        <!-- A PROPOS -->
+        <section id="apropos">
+            <h2>À propos</h2>
+            <p>
+                Je suis Renzo Andrés Ccama Ordoñez, étudiant en double diplôme à l’IMT Atlantique 
+                (spécialisation : Transition Énergétique et Environnementale) et ingénieur environnemental formé à l’UNI – Pérou.
+            </p>
+            <p>
+                Je m’intéresse à la modélisation énergétique, aux réseaux thermiques et électriques, 
+                à l’optimisation des systèmes multi-énergies, au SIG (ArcGIS), et à la gestion HSE.
+            </p>
+        </section>
+
+        <!-- PROJETS -->
+        <section id="projets">
+            <h2>Projets</h2>
+            <p>Quelques projets d’ingénierie réalisés :</p>
+
+            <ul style="font-size:18px; line-height:1.7;">
+                <li>🔵 Modélisation de réseaux de chaleur – Scénarios SC1 à SC5</li>
+                <li>🟢 Analyse énergétique (Python, R, optimisation)</li>
+                <li>🟡 Études SIG pour infrastructures urbaines (ArcGIS, QGIS)</li>
+                <li>🟣 Gestion HSE dans le secteur minier</li>
+            </ul>
+        </section>
+
+        <!-- ENERGIE -->
+        <section id="energie">
+            <h2>Énergie & Transition</h2>
+            <p>
+                Je travaille sur des thématiques liées à la transition énergétique : 
+            </p>
+
+            <ul style="font-size:18px; line-height:1.7;">
+                <li>⚡ Systèmes multi-énergies (gaz, biomasse, PAC, cogénération)</li>
+                <li>🔋 Stockage d’énergie (batteries, modèles ESOEI)</li>
+                <li>🌞 Intégration des énergies renouvelables</li>
+                <li>🌀 Simulation numérique des flux (thermiques et électriques)</li>
+            </ul>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email : <strong>renzo.ccama.ord@gmail.com</strong></p>
+            <p>LinkedIn : <a href="https://www.linkedin.com/in/renzoccamaor" target="_blank" style="color:#4dd0e1;">linkedin.com/in/renzoccamaor</a></p>
+            <p>Localisation : Nantes, France</p>
+        </section>
+
     </div>
 
-    <canvas id="grid"></canvas>
-
+    <!-- SCRIPT ANIMATION ELECTRIQUE -->
     <script>
-        const canvas = document.getElementById("grid");
+        const canvas = document.getElementById("canvas-electric");
         const ctx = canvas.getContext("2d");
 
-        let w, h;
-
-        function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
         }
+        window.onresize = resizeCanvas;
+        resizeCanvas();
 
-        window.addEventListener("resize", resize);
-        resize();
-
-        // NODOS DEL SISTEMA ELÉCTRICO
         const nodes = [
-            { x: 200, y: h/2 - 150, type: "GEN", label: "Generación" },
-            { x: w/2, y: h/2, type: "SUB", label: "Subestación" },
-            { x: w - 250, y: h/2 - 120, type: "DIST", label: "Distribución" },
-            { x: w - 200, y: h/2 + 150, type: "LOAD", label: "Consumo" }
+            { x: 200, y: canvas.height/2 - 100, type: "GEN", label: "Génération" },
+            { x: canvas.width/2, y: canvas.height/2, type: "SUB", label: "Sous-station" },
+            { x: canvas.width - 220, y: canvas.height/2 - 80, type: "DIST", label: "Distribution" },
+            { x: canvas.width - 200, y: canvas.height/2 + 130, type: "LOAD", label: "Consommation" }
         ];
 
-        // CONEXIONES (LÍNEAS ELÉCTRICAS)
         const lines = [
-            { a: 0, b: 1 }, // generación → subestación
-            { a: 1, b: 2 }, // subestación → distribución
-            { a: 1, b: 3 }  // subestación → carga
+            { a: 0, b: 1 },
+            { a: 1, b: 2 },
+            { a: 1, b: 3 }
         ];
 
-        // PULSOS DE ELECTRICIDAD
         const pulses = [];
 
-        function spawnPulse(lineIndex) {
-            pulses.push({
-                line: lineIndex,
-                t: 0 // posición entre 0 y 1
-            });
+        function spawnPulse() {
+            lines.forEach((_, i) => pulses.push({ line: i, t: 0 }));
         }
 
-        // Generar pulsos constantemente
-        setInterval(() => {
-            lines.forEach((_, i) => spawnPulse(i));
-        }, 600);
+        setInterval(spawnPulse, 600);
 
-        function drawNode(node) {
+        function drawNode(n) {
             ctx.beginPath();
-            ctx.arc(node.x, node.y, 35, 0, Math.PI * 2);
-            ctx.fillStyle = node.type === "GEN" ? "#00e676" :
-                            node.type === "SUB" ? "#29b6f6" :
-                            node.type === "DIST" ? "#ffd54f" :
-                            "#ff8a80";
-            ctx.shadowBlur = 20;
+            ctx.arc(n.x, n.y, 25, 0, Math.PI*2);
+            ctx.fillStyle =
+                n.type === "GEN" ? "#00e676" :
+                n.type === "SUB" ? "#26c6da" :
+                n.type === "DIST" ? "#ffd54f" :
+                "#ef5350";
+            ctx.shadowBlur = 15;
             ctx.shadowColor = ctx.fillStyle;
             ctx.fill();
 
             ctx.shadowBlur = 0;
-            ctx.fillStyle = "#e0faff";
-            ctx.font = "16px Arial";
+            ctx.fillStyle = "#cfefff";
+            ctx.font = "15px Arial";
             ctx.textAlign = "center";
-            ctx.fillText(node.label, node.x, node.y + 55);
+            ctx.fillText(n.label, n.x, n.y + 45);
         }
 
         function drawLine(a, b) {
             ctx.beginPath();
-            ctx.lineWidth = 4;
-            ctx.strokeStyle = "rgba(100,200,255,0.35)";
+            ctx.strokeStyle = "rgba(120,200,255,0.25)";
+            ctx.lineWidth = 3;
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
             ctx.stroke();
         }
 
-        function drawPulse(pulse) {
-            const line = lines[pulse.line];
-            const a = nodes[line.a];
-            const b = nodes[line.b];
+        function drawPulse(p) {
+            const a = nodes[lines[p.line].a];
+            const b = nodes[lines[p.line].b];
 
-            const x = a.x + (b.x - a.x) * pulse.t;
-            const y = a.y + (b.y - a.y) * pulse.t;
+            const x = a.x + (b.x - a.x) * p.t;
+            const y = a.y + (b.y - a.y) * p.t;
 
             ctx.beginPath();
-            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.arc(x, y, 8, 0, Math.PI*2);
             ctx.fillStyle = "#80e8ff";
-            ctx.shadowBlur = 20;
-            ctx.shadowColor = "#4dd0e1";
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = "#80e8ff";
             ctx.fill();
             ctx.shadowBlur = 0;
         }
 
         function animate() {
-            ctx.clearRect(0, 0, w, h);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Dibujar líneas
             lines.forEach(l => drawLine(nodes[l.a], nodes[l.b]));
-
-            // Dibujar nodos
             nodes.forEach(drawNode);
 
-            // Dibujar pulsos eléctricos
-            pulses.forEach((pulse, i) => {
-                pulse.t += 0.01; // velocidad
-                drawPulse(pulse);
-
-                if (pulse.t > 1) pulses.splice(i, 1);
+            pulses.forEach((p, i) => {
+                p.t += 0.01;
+                drawPulse(p);
+                if (p.t >= 1) pulses.splice(i, 1);
             });
 
             requestAnimationFrame(animate);
@@ -155,5 +266,6 @@
 
         animate();
     </script>
+
 </body>
 </html>
