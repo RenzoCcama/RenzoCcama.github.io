@@ -2,196 +2,441 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>RenzoCcama – Portfolio Énergie & Ingénierie</title>
+    <title>RenzoCcama – Ingénierie & Énergie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
-        * {
-            margin: 0; padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
             background: #0b1120;
             color: #e0f7ff;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* 🌐 NAVBAR PROFESSIONNEL */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #ffffffcc;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
             display: flex;
-            height: 100vh;
-            overflow: hidden;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 32px;
         }
 
-        /* ⬅️ MENU LATERAL */
-        .sidebar {
-            width: 260px;
-            background: #101a33;
-            border-right: 2px solid #1e2a4a;
+        .nav-left {
             display: flex;
-            flex-direction: column;
-            padding: 20px;
+            align-items: center;
+            gap: 12px;
         }
 
-        .sidebar h1 {
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #4dd0e1;
-            text-shadow: 0 0 8px #4dd0e1;
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 2px solid #1b4ca8;
         }
 
-        .menu a {
-            display: block;
-            padding: 14px;
-            margin-bottom: 8px;
-            color: #bbdefb;
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0b2b66;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 22px;
+        }
+
+        .navbar ul li a {
             text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1b355e;
+            padding: 6px 10px;
             border-radius: 6px;
-            font-weight: bold;
-            transition: 0.3s;
+            transition: 0.25s;
         }
 
-        .menu a:hover {
-            background: #1e2a4a;
-            color: #80e8ff;
+        .navbar ul li a:hover {
+            background: #1b4ca8;
+            color: white;
+            box-shadow: 0 4px 10px rgba(27,76,168,0.4);
         }
 
-        /* ➡️ CONTENU PRINCIPAL */
-        .content {
-            flex: 1;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        .lang-btn, .theme-btn, .cv-btn {
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: transparent;
+            color: #1b355e;
+            border: 1px solid transparent;
+            transition: 0.25s;
+        }
+
+        .lang-btn.active {
+            border-color: #1b4ca8;
+            background: #1b4ca8;
+            color: #fff;
+        }
+
+        .lang-btn:hover, .theme-btn:hover, .cv-btn:hover {
+            border-color: #1b4ca8;
+        }
+
+        .cv-btn {
+            background: #1b4ca8;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 🌓 MODO CLARO */
+        body.light-mode {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        body.light-mode .navbar {
+            background: #ffffffee;
+        }
+
+        body.light-mode .logo {
+            color: #0b2b66;
+        }
+
+        body.light-mode .navbar ul li a {
+            color: #1f2937;
+        }
+
+        body.light-mode .navbar ul li a:hover {
+            background: #1b4ca8;
+            color: #fff;
+        }
+
+        body.light-mode .lang-btn,
+        body.light-mode .theme-btn {
+            color: #1f2937;
+        }
+
+        /* CONTENU */
         section {
-            padding: 40px 60px;
+            padding: 100px 60px 60px 60px;
             min-height: 100vh;
         }
 
         h2 {
+            font-size: 32px;
             color: #4dd0e1;
-            text-shadow: 0 0 10px #26c6da;
-            margin-bottom: 15px;
-            font-size: 28px;
+            margin-bottom: 18px;
+            text-shadow: 0 0 8px #3fcde1;
+        }
+
+        body.light-mode h2 {
+            text-shadow: none;
         }
 
         p {
             font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.7;
+            max-width: 900px;
+            margin-bottom: 12px;
         }
 
-        /* CANVAS ELECTRIC */
-        #canvas-electric {
+        ul {
+            margin-left: 20px;
+        }
+
+        /* CANVAS ÉLECTRIQUE */
+        #gridCanvas {
             width: 100%;
             height: 70vh;
-            display: block;
-            border-radius: 14px;
-            border: 2px solid #1c2a40;
-            background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
+            border-radius: 16px;
             margin-top: 20px;
+            background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
+            border: 2px solid #1c2a40;
         }
 
+        body.light-mode #gridCanvas {
+            border-color: #cbd5f5;
+        }
+
+        a.link {
+            color: #4dd0e1;
+            text-decoration: none;
+        }
+
+        a.link:hover {
+            text-decoration: underline;
+        }
+
+        /* BLOQUES POR IDIOMA */
+        .lang-block { display: none; }
+        body[data-lang="fr"] .lang-fr { display: block; }
+        body[data-lang="es"] .lang-es { display: block; }
+        body[data-lang="en"] .lang-en { display: block; }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 10px 16px;
+            }
+            section {
+                padding: 100px 16px 40px 16px;
+            }
+        }
     </style>
 </head>
 
-<body>
+<body data-lang="fr" class="dark-mode">
 
-    <!-- MENU LATÉRAL -->
-    <nav class="sidebar">
-        <h1>RenzoCcama</h1>
-        <div class="menu">
-            <a href="#accueil">Accueil</a>
-            <a href="#apropos">À propos</a>
-            <a href="#projets">Projets</a>
-            <a href="#energie">Énergie</a>
-            <a href="#contact">Contact</a>
+    <!-- 🌐 NAVBAR PROFESIONAL -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <!-- Cambia el src por el nombre de tu foto y súbela al repo -->
+            <img class="avatar" src="photo_renzo.jpg" alt="Photo de Renzo">
+            <div class="logo">RenzoCcama</div>
+        </div>
+
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#energie">Énergie</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <!-- Botones de idioma -->
+            <button class="lang-btn active" data-lang="fr">FR</button>
+            <button class="lang-btn" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+
+            <!-- Modo claro/oscuro -->
+            <button class="theme-btn" id="themeToggle">🌙</button>
+
+            <!-- Botón CV PDF (sube CV_RenzoCcama.pdf al repo) -->
+            <a href="CV_RenzoCcama.pdf" class="cv-btn" target="_blank" rel="noopener">
+                📄 CV PDF
+            </a>
         </div>
     </nav>
 
-    <!-- CONTENU PRINCIPAL -->
-    <div class="content">
+    <!-- ⭐ SECCIONES -->
 
-        <!-- ACCUEIL -->
-        <section id="accueil">
+    <!-- ACCUEIL / INICIO / HOME -->
+    <section id="accueil">
+        <div class="lang-block lang-fr">
             <h2>Simulation du Flux Électrique</h2>
             <p>
-                Voici une visualisation animée représentant la génération, la transmission et la distribution d’électricité.
-                Conçue pour illustrer des concepts de réseaux intelligents (“smart grids”) et systèmes énergétiques.
+                Visualisation dynamique illustrant la génération, la transmission et la distribution d’électricité.
+                Outil pédagogique pour comprendre les flux énergétiques dans un réseau intelligent (smart grid).
             </p>
+        </div>
 
-            <canvas id="canvas-electric"></canvas>
-        </section>
+        <div class="lang-block lang-es">
+            <h2>Simulación del Flujo Eléctrico</h2>
+            <p>
+                Visualización dinámica que representa la generación, transmisión y distribución de la electricidad.
+                Útil para comprender el flujo de energía en una red inteligente (smart grid).
+            </p>
+        </div>
 
-        <!-- A PROPOS -->
-        <section id="apropos">
+        <div class="lang-block lang-en">
+            <h2>Electric Power Flow Simulation</h2>
+            <p>
+                Dynamic visualization showing power generation, transmission and distribution.
+                Designed to illustrate energy flows in a smart grid environment.
+            </p>
+        </div>
+
+        <canvas id="gridCanvas"></canvas>
+    </section>
+
+    <!-- À PROPOS / SOBRE MÍ / ABOUT -->
+    <section id="apropos">
+        <div class="lang-block lang-fr">
             <h2>À propos</h2>
             <p>
-                Je suis Renzo Andrés Ccama Ordoñez, étudiant en double diplôme à l’IMT Atlantique 
-                (spécialisation : Transition Énergétique et Environnementale) et ingénieur environnemental formé à l’UNI – Pérou.
+                Je suis Renzo Andrés Ccama Ordoñez, étudiant en double diplôme à l’IMT Atlantique
+                (spécialisation : Transition Énergétique et Environnementale) et ingénieur environnemental
+                formé à l’UNI (Pérou).
             </p>
             <p>
-                Je m’intéresse à la modélisation énergétique, aux réseaux thermiques et électriques, 
-                à l’optimisation des systèmes multi-énergies, au SIG (ArcGIS), et à la gestion HSE.
+                Mes domaines principaux : modélisation énergétique, réseaux thermiques et électriques,
+                systèmes multi-énergies, SIG (ArcGIS, QGIS) et gestion HSE.
             </p>
-        </section>
+        </div>
 
-        <!-- PROJETS -->
-        <section id="projets">
+        <div class="lang-block lang-es">
+            <h2>Sobre mí</h2>
+            <p>
+                Soy Renzo Andrés Ccama Ordoñez, estudiante de doble diploma en IMT Atlantique
+                (especialización en Transición Energética y Ambiental) e ingeniero ambiental formado en la UNI (Perú).
+            </p>
+            <p>
+                Mis principales áreas: modelización energética, redes térmicas y eléctricas,
+                sistemas multi-energía, SIG (ArcGIS, QGIS) y gestión HSE.
+            </p>
+        </div>
+
+        <div class="lang-block lang-en">
+            <h2>About me</h2>
+            <p>
+                I am Renzo Andrés Ccama Ordoñez, double degree student at IMT Atlantique
+                (specialising in Energy and Environmental Transition) and Environmental Engineer
+                trained at UNI (Peru).
+            </p>
+            <p>
+                Main fields: energy modelling, thermal and electrical networks, multi-energy systems,
+                GIS (ArcGIS, QGIS) and HSE management.
+            </p>
+        </div>
+    </section>
+
+    <!-- PROJETS / PROYECTOS / PROJECTS -->
+    <section id="projets">
+        <div class="lang-block lang-fr">
             <h2>Projets</h2>
-            <p>Quelques projets d’ingénierie réalisés :</p>
-
-            <ul style="font-size:18px; line-height:1.7;">
+            <ul style="font-size: 18px; line-height: 1.7;">
                 <li>🔵 Modélisation de réseaux de chaleur – Scénarios SC1 à SC5</li>
-                <li>🟢 Analyse énergétique (Python, R, optimisation)</li>
-                <li>🟡 Études SIG pour infrastructures urbaines (ArcGIS, QGIS)</li>
-                <li>🟣 Gestion HSE dans le secteur minier</li>
+                <li>🟢 Analyse énergétique avancée (Python, R)</li>
+                <li>🟡 Études SIG (ArcGIS Pro, QGIS)</li>
+                <li>🟣 Gestion HSE dans l’industrie minière</li>
             </ul>
-        </section>
+        </div>
 
-        <!-- ENERGIE -->
-        <section id="energie">
+        <div class="lang-block lang-es">
+            <h2>Proyectos</h2>
+            <ul style="font-size: 18px; line-height: 1.7;">
+                <li>🔵 Modelización de redes de calor – Escenarios SC1 a SC5</li>
+                <li>🟢 Análisis energético avanzado (Python, R)</li>
+                <li>🟡 Estudios SIG (ArcGIS Pro, QGIS)</li>
+                <li>🟣 Gestión HSE en la industria minera</li>
+            </ul>
+        </div>
+
+        <div class="lang-block lang-en">
+            <h2>Projects</h2>
+            <ul style="font-size: 18px; line-height: 1.7;">
+                <li>🔵 District heating network modelling – SC1 to SC5</li>
+                <li>🟢 Advanced energy analysis (Python, R)</li>
+                <li>🟡 GIS studies (ArcGIS Pro, QGIS)</li>
+                <li>🟣 HSE management in the mining sector</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ÉNERGIE / ENERGÍA / ENERGY -->
+    <section id="energie">
+        <div class="lang-block lang-fr">
             <h2>Énergie & Transition</h2>
-            <p>
-                Je travaille sur des thématiques liées à la transition énergétique : 
-            </p>
-
-            <ul style="font-size:18px; line-height:1.7;">
-                <li>⚡ Systèmes multi-énergies (gaz, biomasse, PAC, cogénération)</li>
-                <li>🔋 Stockage d’énergie (batteries, modèles ESOEI)</li>
+            <ul style="font-size: 18px; line-height: 1.7;">
+                <li>⚡ Systèmes multi-énergies (PAC, biomasse, cogénération)</li>
+                <li>🔋 Stockage d'énergie (batteries & ESOEI)</li>
                 <li>🌞 Intégration des énergies renouvelables</li>
-                <li>🌀 Simulation numérique des flux (thermiques et électriques)</li>
+                <li>🌀 Simulation numérique des flux énergétiques</li>
             </ul>
-        </section>
+        </div>
 
-        <!-- CONTACT -->
-        <section id="contact">
+        <div class="lang-block lang-es">
+            <h2>Energía y Transición</h2>
+            <ul style="font-size: 18px; line-height: 1.7;">
+                <li>⚡ Sistemas multi-energía (bomba de calor, biomasa, cogeneración)</li>
+                <li>🔋 Almacenamiento de energía (baterías y ESOEI)</li>
+                <li>🌞 Integración de energías renovables</li>
+                <li>🌀 Simulación numérica de flujos energéticos</li>
+            </ul>
+        </div>
+
+        <div class="lang-block lang-en">
+            <h2>Energy & Transition</h2>
+            <ul style="font-size: 18px; line-height: 1.7;">
+                <li>⚡ Multi-energy systems (heat pumps, biomass, CHP)</li>
+                <li>🔋 Energy storage (batteries & ESOEI)</li>
+                <li>🌞 Integration of renewable energies</li>
+                <li>🌀 Numerical simulation of energy flows</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONTACT / CONTACTO -->
+    <section id="contact">
+        <div class="lang-block lang-fr">
             <h2>Contact</h2>
-            <p>Email : <strong>renzo.ccama.ord@gmail.com</strong></p>
-            <p>LinkedIn : <a href="https://www.linkedin.com/in/renzoccamaor" target="_blank" style="color:#4dd0e1;">linkedin.com/in/renzoccamaor</a></p>
-            <p>Localisation : Nantes, France</p>
-        </section>
+            <p><strong>Email :</strong> renzo.ccama.ord@gmail.com</p>
+            <p><strong>LinkedIn :</strong>
+                <a class="link" href="https://www.linkedin.com/in/renzoccamaor" target="_blank">
+                    linkedin.com/in/renzoccamaor
+                </a>
+            </p>
+            <p><strong>Localisation :</strong> Nantes, France</p>
+        </div>
 
-    </div>
+        <div class="lang-block lang-es">
+            <h2>Contacto</h2>
+            <p><strong>Correo:</strong> renzo.ccama.ord@gmail.com</p>
+            <p><strong>LinkedIn:</strong>
+                <a class="link" href="https://www.linkedin.com/in/renzoccamaor" target="_blank">
+                    linkedin.com/in/renzoccamaor
+                </a>
+            </p>
+            <p><strong>Ubicación:</strong> Nantes, Francia</p>
+        </div>
 
-    <!-- SCRIPT ANIMATION ELECTRIQUE -->
+        <div class="lang-block lang-en">
+            <h2>Contact</h2>
+            <p><strong>Email:</strong> renzo.ccama.ord@gmail.com</p>
+            <p><strong>LinkedIn:</strong>
+                <a class="link" href="https://www.linkedin.com/in/renzoccamaor" target="_blank">
+                    linkedin.com/in/renzoccamaor
+                </a>
+            </p>
+            <p><strong>Location:</strong> Nantes, France</p>
+        </div>
+    </section>
+
+    <!-- ⚡ ANIMACIÓN RED ELÉCTRICA + LÓGICA IDIOMA + TEMA -->
     <script>
-        const canvas = document.getElementById("canvas-electric");
+        // --- Canvas eléctrico ---
+        const canvas = document.getElementById("gridCanvas");
         const ctx = canvas.getContext("2d");
 
         function resizeCanvas() {
             canvas.width = canvas.clientWidth;
             canvas.height = canvas.clientHeight;
         }
-        window.onresize = resizeCanvas;
         resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
 
         const nodes = [
-            { x: 200, y: canvas.height/2 - 100, type: "GEN", label: "Génération" },
-            { x: canvas.width/2, y: canvas.height/2, type: "SUB", label: "Sous-station" },
-            { x: canvas.width - 220, y: canvas.height/2 - 80, type: "DIST", label: "Distribution" },
-            { x: canvas.width - 200, y: canvas.height/2 + 130, type: "LOAD", label: "Consommation" }
+            { x: 200, y: () => canvas.height/2 - 100, type: "GEN", labelFR: "Génération", labelES: "Generación", labelEN: "Generation" },
+            { x: () => canvas.width/2, y: () => canvas.height/2, type: "SUB", labelFR: "Sous-station", labelES: "Subestación", labelEN: "Substation" },
+            { x: () => canvas.width - 220, y: () => canvas.height/2 - 80, type: "DIS", labelFR: "Distribution", labelES: "Distribución", labelEN: "Distribution" },
+            { x: () => canvas.width - 200, y: () => canvas.height/2 + 130, type: "LOAD", labelFR: "Consommation", labelES: "Consumo", labelEN: "Load" }
         ];
 
-        const lines = [
+        const links = [
             { a: 0, b: 1 },
             { a: 1, b: 2 },
             { a: 1, b: 3 }
@@ -200,45 +445,67 @@
         const pulses = [];
 
         function spawnPulse() {
-            lines.forEach((_, i) => pulses.push({ line: i, t: 0 }));
+            links.forEach((_, i) => pulses.push({ link: i, t: 0 }));
+        }
+        setInterval(spawnPulse, 700);
+
+        function currentLang() {
+            return document.body.dataset.lang || "fr";
         }
 
-        setInterval(spawnPulse, 600);
+        function getNodeCoords(n) {
+            const x = typeof n.x === "function" ? n.x() : n.x;
+            const y = typeof n.y === "function" ? n.y() : n.y;
+            return { x, y };
+        }
+
+        function nodeLabel(n) {
+            const lang = currentLang();
+            if (lang === "es") return n.labelES;
+            if (lang === "en") return n.labelEN;
+            return n.labelFR;
+        }
 
         function drawNode(n) {
+            const { x, y } = getNodeCoords(n);
             ctx.beginPath();
-            ctx.arc(n.x, n.y, 25, 0, Math.PI*2);
+            ctx.arc(x, y, 25, 0, Math.PI*2);
             ctx.fillStyle =
                 n.type === "GEN" ? "#00e676" :
                 n.type === "SUB" ? "#26c6da" :
-                n.type === "DIST" ? "#ffd54f" :
+                n.type === "DIS" ? "#ffd54f" :
                 "#ef5350";
+
             ctx.shadowBlur = 15;
             ctx.shadowColor = ctx.fillStyle;
             ctx.fill();
-
             ctx.shadowBlur = 0;
+
             ctx.fillStyle = "#cfefff";
             ctx.font = "15px Arial";
             ctx.textAlign = "center";
-            ctx.fillText(n.label, n.x, n.y + 45);
+            ctx.fillText(nodeLabel(n), x, y + 45);
         }
 
-        function drawLine(a, b) {
+        function drawLink(a, b) {
+            const ca = getNodeCoords(a);
+            const cb = getNodeCoords(b);
             ctx.beginPath();
             ctx.strokeStyle = "rgba(120,200,255,0.25)";
             ctx.lineWidth = 3;
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
+            ctx.moveTo(ca.x, ca.y);
+            ctx.lineTo(cb.x, cb.y);
             ctx.stroke();
         }
 
         function drawPulse(p) {
-            const a = nodes[lines[p.line].a];
-            const b = nodes[lines[p.line].b];
+            const a = nodes[links[p.link].a];
+            const b = nodes[links[p.link].b];
+            const ca = getNodeCoords(a);
+            const cb = getNodeCoords(b);
 
-            const x = a.x + (b.x - a.x) * p.t;
-            const y = a.y + (b.y - a.y) * p.t;
+            const x = ca.x + (cb.x - ca.x) * p.t;
+            const y = ca.y + (cb.y - ca.y) * p.t;
 
             ctx.beginPath();
             ctx.arc(x, y, 8, 0, Math.PI*2);
@@ -252,19 +519,38 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            lines.forEach(l => drawLine(nodes[l.a], nodes[l.b]));
+            links.forEach(l => drawLink(nodes[l.a], nodes[l.b]));
             nodes.forEach(drawNode);
 
             pulses.forEach((p, i) => {
-                p.t += 0.01;
+                p.t += 0.012;
                 drawPulse(p);
                 if (p.t >= 1) pulses.splice(i, 1);
             });
 
             requestAnimationFrame(animate);
         }
-
         animate();
+
+        // --- Cambio de idioma ---
+        const langButtons = document.querySelectorAll(".lang-btn");
+        function setLanguage(lang) {
+            document.body.dataset.lang = lang;
+            langButtons.forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.lang === lang);
+            });
+        }
+        langButtons.forEach(btn => {
+            btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+        });
+
+        // --- Modo claro/oscuro ---
+        const themeToggle = document.getElementById("themeToggle");
+        function toggleTheme() {
+            document.body.classList.toggle("light-mode");
+            themeToggle.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+        }
+        themeToggle.addEventListener("click", toggleTheme);
     </script>
 
 </body>
