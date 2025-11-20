@@ -1,636 +1,314 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>RenzoCcama – Ingénierie & Énergie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>RenzoCcama – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+/* ========================== */
+/*      ESTILOS GENERALES     */
+/* ========================== */
 
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #0b1120;
-            color: #e0f7ff;
-            overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
-        }
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    background: #0b1120;
+    color: white;
+}
 
-        /* 🌐 NAVBAR PROFESSIONNEL */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            background: #ffffffcc;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 32px;
-        }
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 32px;
+    z-index: 1000;
+}
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+.navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #0b2b66;
+    font-weight: 700;
+    font-size: 18px;
+}
 
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            object-fit: cover;
-            border: 2px solid #1b4ca8;
-        }
+/* SECCIONES */
+section {
+    padding: 120px 50px 60px 50px;
+}
 
-        .logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0b2b66;
-        }
+section h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #4dd0e1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 22px;
-        }
+section p {
+    font-size: 18px;
+    max-width: 900px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
 
-        .navbar ul li a {
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1b355e;
-            padding: 6px 10px;
-            border-radius: 6px;
-            transition: 0.25s;
-        }
+/* CANVAS */
+#gridCanvas {
+    width: 100%;
+    height: 55vh;
+    background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
+    border-radius: 12px;
+    border: 2px solid #1c2a40;
+    margin-top: 20px;
+}
 
-        .navbar ul li a:hover {
-            background: #1b4ca8;
-            color: white;
-            box-shadow: 0 4px 10px rgba(27,76,168,0.4);
-        }
+/* BOTÓN ENERGÍA */
+#toggleEnergy {
+    padding: 10px 18px;
+    background: #1b4ca8;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lang-btn, .theme-btn, .cv-btn {
-            border: none;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: transparent;
-            color: #1b355e;
-            border: 1px solid transparent;
-            transition: 0.25s;
-        }
-
-        .lang-btn.active {
-            border-color: #1b4ca8;
-            background: #1b4ca8;
-            color: #fff;
-        }
-
-        .lang-btn:hover, .theme-btn:hover, .cv-btn:hover {
-            border-color: #1b4ca8;
-        }
-
-        .cv-btn {
-            background: #1b4ca8;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* 🌓 MODO CLARO */
-        body.light-mode {
-            background: #f5f7fb;
-            color: #111827;
-        }
-
-        body.light-mode .navbar {
-            background: #ffffffee;
-        }
-
-        body.light-mode .logo {
-            color: #0b2b66;
-        }
-
-        body.light-mode .navbar ul li a {
-            color: #1f2937;
-        }
-
-        body.light-mode .navbar ul li a:hover {
-            background: #1b4ca8;
-            color: #fff;
-        }
-
-        body.light-mode .lang-btn,
-        body.light-mode .theme-btn {
-            color: #1f2937;
-        }
-
-        /* CONTENU */
-        section {
-            padding: 100px 60px 60px 60px;
-            min-height: 100vh;
-        }
-
-        h2 {
-            font-size: 32px;
-            color: #4dd0e1;
-            margin-bottom: 18px;
-            text-shadow: 0 0 8px #3fcde1;
-        }
-
-        body.light-mode h2 {
-            text-shadow: none;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 900px;
-            margin-bottom: 12px;
-        }
-
-        ul {
-            margin-left: 20px;
-        }
-
-        /* CANVAS ÉLECTRIQUE */
-        #gridCanvas {
-            width: 100%;
-            height: 70vh;
-            border-radius: 16px;
-            margin-top: 20px;
-            background: radial-gradient(circle at top, #0a1a33, #02060f 70%);
-            border: 2px solid #1c2a40;
-        }
-
-        body.light-mode #gridCanvas {
-            border-color: #cbd5f5;
-            background: #e3ecff;
-        }
-
-        a.link {
-            color: #4dd0e1;
-            text-decoration: none;
-        }
-
-        /* IDIOMA */
-        .lang-block { display: none; }
-        body[data-lang="fr"] .lang-fr { display: block; }
-        body[data-lang="es"] .lang-es { display: block; }
-        body[data-lang="en"] .lang-en { display: block; }
-
-        /* BOTÓN ENERGÍA */
-        #toggleEnergyBtn {
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: #1b4ca8;
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 12px;
-            transition: 0.2s;
-        }
-
-        #toggleEnergyBtn:hover {
-            background: #163c88;
-        }
-    </style>
+#toggleEnergy:hover {
+    background: #173d82;
+}
+</style>
 </head>
 
-<body data-lang="fr" class="dark-mode">
+<body>
 
-    <!-- 🌐 NAVBAR PROFESIONAL -->
-    <nav class="navbar">
-        <div class="nav-left">
-            <img class="avatar" src="photo_renzo.jpg" alt="Photo de Renzo">
-            <div class="logo">RenzoCcama</div>
-        </div>
+<!-- ========================== -->
+<!--           NAVBAR           -->
+<!-- ========================== -->
+<div class="navbar">
+    <div>
+        <strong style="font-size:22px;">RenzoCcama</strong>
+    </div>
+    <div>
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>
 
-        <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#apropos">À propos</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#energie">Énergie</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<!-- ========================== -->
+<!--        ACCUEIL             -->
+<!-- ========================== -->
+<section id="accueil">
 
-        <div class="nav-right">
-            <button class="lang-btn active" data-lang="fr">FR</button>
-            <button class="lang-btn" data-lang="es">ES</button>
-            <button class="lang-btn" data-lang="en">EN</button>
-            <button class="theme-btn" id="themeToggle">🌙</button>
+<h2>SIMULATION ÉLECTRIQUE</h2>
 
-            <a href="CV_RenzoCcama.pdf" class="cv-btn" target="_blank">
-                📄 CV PDF
-            </a>
-        </div>
-    </nav>
+<p><strong>Texto editable:</strong>  
+Aquí se muestra una red eléctrica simple: generación → subestación → casa → foco.  
+El flujo se mueve continuamente hasta llegar a la lámpara.</p>
 
-    <!-- ⭐ SECCIÓN ACCUEIL -->
-    <section id="accueil">
-        <div class="lang-block lang-fr">
-            <h2>Simulation Électrique Avancée</h2>
-            <p>Réseau complet : génération → postes → distribution → lampes.</p>
-        </div>
-        <div class="lang-block lang-es">
-            <h2>Simulación Eléctrica Avanzada</h2>
-            <p>Red completa: generación → subestaciones → distribución → foco.</p>
-        </div>
-        <div class="lang-block lang-en">
-            <h2>Advanced Electric Simulation</h2>
-            <p>Full grid: generation → substations → distribution → lamp.</p>
-        </div>
+<button id="toggleEnergy">🔌 Couper l'énergie</button>
+<canvas id="gridCanvas"></canvas>
 
-        <button id="toggleEnergyBtn">🔌 Couper l’énergie</button>
-        <canvas id="gridCanvas"></canvas>
-    </section>
+</section>
 
-    <!-- ⭐ SECCIÓN A PROPOS -->
-    <section id="apropos">
-        <div class="lang-block lang-fr">
-            <h2>À propos</h2>
-            <p>Je suis Renzo, ingénieur spécialisé en transition énergétique et systèmes multi-énergies.</p>
-        </div>
-        <div class="lang-block lang-es">
-            <h2>Sobre mí</h2>
-            <p>Soy Renzo, ingeniero especializado en transición energética y sistemas multi-energéticos.</p>
-        </div>
-        <div class="lang-block lang-en">
-            <h2>About me</h2>
-            <p>I am Renzo, energy transition engineer specialized in multi-energy systems.</p>
-        </div>
-    </section>
+<!-- ========================== -->
+<!--        À PROPOS            -->
+<!-- ========================== -->
+<section id="apropos">
 
-    <!-- ⭐ SECCIÓN PROJETS -->
-    <section id="projets">
-        <div class="lang-block lang-fr">
-            <h2>Projets</h2>
-            <ul>
-                <li>Réseaux de chaleur – SC1 à SC5</li>
-                <li>Modélisation énergétique (Python, R)</li>
-                <li>Études SIG</li>
-            </ul>
-        </div>
-        <div class="lang-block lang-es">
-            <h2>Proyectos</h2>
-            <ul>
-                <li>Redes de calor – SC1 a SC5</li>
-                <li>Modelización energética</li>
-                <li>Estudios GIS</li>
-            </ul>
-        </div>
-        <div class="lang-block lang-en">
-            <h2>Projects</h2>
-            <ul>
-                <li>District heating networks – SC1 to SC5</li>
-                <li>Energy modelling</li>
-                <li>GIS studies</li>
-            </ul>
-        </div>
-    </section>
+<h2>À PROPOS</h2>
 
-    <!-- ⭐ SECCIÓN ÉNERGIE -->
-    <section id="energie">
-        <div class="lang-block lang-fr">
-            <h2>Énergie & Transition</h2>
-            <ul>
-                <li>Systèmes multi-énergies</li>
-                <li>Stockage d’énergie</li>
-            </ul>
-        </div>
-        <div class="lang-block lang-es">
-            <h2>Energía y Transición</h2>
-            <ul>
-                <li>Sistemas multi-energía</li>
-                <li>Almacenamiento de energía</li>
-            </ul>
-        </div>
-        <div class="lang-block lang-en">
-            <h2>Energy & Transition</h2>
-            <ul>
-                <li>Multi-energy systems</li>
-                <li>Energy storage</li>
-            </ul>
-        </div>
-    </section>
+<p><strong>Texto editable:</strong>  
+Soy Renzo, estudiante en ingeniería energética y ambiental.  
+Aquí puedes colocar una descripción rápida sobre ti, tu experiencia, tu motivación, tus estudios, etc.</p>
 
-    <!-- ⭐ SECCIÓN CONTACT -->
-    <section id="contact">
-        <div class="lang-block lang-fr">
-            <h2>Contact</h2>
-            <p>Email : renzo.ccama.ord@gmail.com</p>
-        </div>
-        <div class="lang-block lang-es">
-            <h2>Contacto</h2>
-            <p>Correo : renzo.ccama.ord@gmail.com</p>
-        </div>
-        <div class="lang-block lang-en">
-            <h2>Contact</h2>
-            <p>Email: renzo.ccama.ord@gmail.com</p>
-        </div>
-    </section>
+</section>
 
-    <!-- ⚡ SCRIPT DE ANIMACIÓN COMPLETA -->
-    <script>
-        /* ================================
-           CONFIGURACIÓN DEL CANVAS
-        ================================= */
-        const canvas = document.getElementById("gridCanvas");
-        const ctx = canvas.getContext("2d");
-        const toggleEnergyBtn = document.getElementById("toggleEnergyBtn");
+<!-- ========================== -->
+<!--         PROJETS            -->
+<!-- ========================== -->
+<section id="projets">
 
-        function resizeCanvas() {
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
-        }
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
+<h2>PROJETS</h2>
 
-        /* ================================
-           ESTADO DE LA RED
-        ================================= */
-        let energyOn = true;
-        let lampIntensity = 0;   // brillo de lámpara
-        let lampExcitation = 0;  // excitación por pulsos
+<p><strong>Texto editable:</strong><br>
+• Modelización energética (Python, R)<br>
+• Sistemas multi-energía<br>
+• GIS (ArcGIS, QGIS)<br>
+• Redes térmicas y eléctricas<br>
+</p>
 
-        const NODE = {
-            GEN: "GEN", SUB: "SUB", DIST: "DIST",
-            LOAD: "LOAD", LAMP: "LAMP"
-        };
+</section>
 
-        const nodes = [
-            { id: 0, x: () => canvas.width * 0.12, y: () => canvas.height * 0.25, type: NODE.GEN,  labelFR: "Centrale", labelES: "Central", labelEN: "Plant" },
-            { id: 1, x: () => canvas.width * 0.12, y: () => canvas.height * 0.55, type: NODE.GEN,  labelFR: "Éolien", labelES: "Eólico", labelEN: "Wind" },
-            { id: 2, x: () => canvas.width * 0.28, y: () => canvas.height * 0.75, type: NODE.GEN,  labelFR: "Solaire", labelES: "Solar", labelEN: "Solar" },
+<!-- ========================== -->
+<!--         CONTACT            -->
+<!-- ========================== -->
+<section id="contact">
 
-            { id: 3, x: () => canvas.width * 0.40, y: () => canvas.height * 0.40, type: NODE.SUB, labelFR: "HT", labelES: "AT", labelEN: "HV" },
-            { id: 4, x: () => canvas.width * 0.55, y: () => canvas.height * 0.50, type: NODE.SUB, labelFR: "MT", labelES: "MT", labelEN: "MV" },
+<h2>CONTACT</h2>
 
-            { id: 5, x: () => canvas.width * 0.75, y: () => canvas.height * 0.30, type: NODE.DIST,labelFR: "Résidentiel", labelES: "Residencial", labelEN: "Residential" },
-            { id: 6, x: () => canvas.width * 0.75, y: () => canvas.height * 0.70, type: NODE.DIST,labelFR: "Industriel",  labelES: "Industrial",  labelEN: "Industrial" },
+<p><strong>Email:</strong> renzo.ccama.ord@gmail.com</p>
 
-            { id: 7, x: () => canvas.width * 0.90, y: () => canvas.height * 0.30, type: NODE.LAMP,labelFR: "Lampe", labelES: "Foco", labelEN: "Lamp" }
-        ];
+</section>
 
-        const links = [
-            { a: 0, b: 3 },
-            { a: 1, b: 3 },
-            { a: 2, b: 4 },
-            { a: 3, b: 4 },
-            { a: 4, b: 5 },
-            { a: 4, b: 6 },
-            { a: 5, b: 7 } // hacia la lámpara
-        ];
 
-        const pulses = [];
+<!-- ========================== -->
+<!--      SCRIPT ANIMACIÓN     -->
+<!-- ========================== -->
+<script>
+const canvas = document.getElementById("gridCanvas");
+const ctx = canvas.getContext("2d");
+const btn = document.getElementById("toggleEnergy");
 
-        function currentLang() {
-            return document.body.dataset.lang || "fr";
-        }
+let energyOn = true;
+let lampIntensity = 0;
+let lampExc = 0;
 
-        function getNodeCoords(n) {
-            const x = typeof n.x === "function" ? n.x() : n.x;
-            const y = typeof n.y === "function" ? n.y() : n.y;
-            return { x, y };
-        }
+function resize() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+}
+resize();
+window.onresize = resize;
 
-        function nodeLabel(n) {
-            const lang = currentLang();
-            if (lang === "es") return n.labelES;
-            if (lang === "en") return n.labelEN;
-            return n.labelFR;
-        }
+/* Nodos simples */
+const nodes = [
+    {x: 100, y: canvas.height/2 - 80, label:"Générateur", type:"GEN"},
+    {x: canvas.width/2 - 80, y: canvas.height/2, label:"Sous-station", type:"SUB"},
+    {x: canvas.width - 140, y: canvas.height/2, label:"Maison", type:"DIST"},
+    {x: canvas.width - 60, y: canvas.height/2 + 20, label:"Lampe", type:"LAMP"}
+];
 
-        /* ================================
-           DIBUJO DE LA RED
-        ================================= */
-        function drawBackground() {
-            const grd = ctx.createRadialGradient(
-                canvas.width * 0.5, canvas.height * 0.1, 30,
-                canvas.width * 0.5, canvas.height * 0.9,
-                Math.max(canvas.width, canvas.height)
-            );
-            grd.addColorStop(0, "rgba(33,150,243,0.20)");
-            grd.addColorStop(1, "rgba(0,0,0,0.90)");
+const links = [
+    {a:0, b:1},
+    {a:1, b:2},
+    {a:2, b:3}
+];
 
-            ctx.fillStyle = grd;
-            ctx.fillRect(0,0, canvas.width, canvas.height);
+let pulses = [];
 
-            ctx.strokeStyle = "rgba(255,255,255,0.03)";
-            ctx.lineWidth = 1;
-            const step = 70;
-            for (let x = -step; x < canvas.width + step; x+= step){
-                ctx.beginPath();
-                ctx.moveTo(x,0);
-                ctx.lineTo(x+step, canvas.height);
-                ctx.stroke();
-            }
-        }
+/* Función para crear pulsos */
+function spawnPulse(){
+    if (!energyOn) return;
+    pulses.push({ link:0, t:0, speed:0.01 });
+    pulses.push({ link:1, t:0, speed:0.01 });
+    pulses.push({ link:2, t:0, speed:0.01 });
+}
+setInterval(spawnPulse, 500);
 
-        function drawLink(link){
-            const a = nodes[link.a];
-            const b = nodes[link.b];
-            const ca = getNodeCoords(a);
-            const cb = getNodeCoords(b);
+/* Dibujar punto */
+function drawNode(n){
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 18, 0, Math.PI*2);
+    let color = (n.type === "GEN") ? "#00e676" :
+                (n.type === "SUB") ? "#26c6da" :
+                (n.type === "DIST") ? "#ffd54f" :
+                                      "#ffe082"; 
 
-            ctx.beginPath();
-            ctx.strokeStyle = "rgba(120,200,255,0.25)";
-            ctx.lineWidth = 3;
-            ctx.moveTo(ca.x, ca.y);
-            ctx.lineTo(cb.x, cb.y);
-            ctx.stroke();
-        }
+    ctx.fillStyle = color;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = color;
+    ctx.fill();
+    ctx.shadowBlur = 0;
 
-        function drawStandardNode(n) {
-            const { x, y } = getNodeCoords(n);
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(x, y, 20, 0, Math.PI*2);
-            ctx.fillStyle =
-                n.type === NODE.GEN  ? "#00e676" :
-                n.type === NODE.SUB  ? "#26c6da" :
-                n.type === NODE.DIST ? "#ffd54f" :
-                "#ef5350";
+    ctx.fillStyle = "white";
+    ctx.font = "14px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(n.label, n.x, n.y + 35);
+}
 
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = ctx.fillStyle;
-            ctx.fill();
-            ctx.shadowBlur = 0;
+/* Dibujar foco */
+function drawLamp(n){
+    ctx.beginPath();
+    const r = 16 + lampIntensity*6;
+    ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,230,120,${0.4 + lampIntensity})`;
+    ctx.fill();
 
-            ctx.fillStyle = "#cfefff";
-            ctx.font = "13px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText(nodeLabel(n), x, y + 34);
-            ctx.restore();
-        }
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 12, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,255,180,${0.6 + lampIntensity})`;
+    ctx.fill();
 
-        function drawLampNode(n) {
-            const { x, y } = getNodeCoords(n);
-            const r = 18;
+    ctx.fillStyle = "white";
+    ctx.font = "14px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText("Lampe", n.x, n.y + 35);
+}
 
-            const halo = r + 15 + lampIntensity * 20;
-            const grad = ctx.createRadialGradient(x,y,r, x,y,halo);
-            grad.addColorStop(0, `rgba(255,241,118,${0.4 + 0.4*lampIntensity})`);
-            grad.addColorStop(1, "rgba(255,241,118,0)");
+/* Dibujar líneas */
+function drawLink(l){
+    const A = nodes[l.a];
+    const B = nodes[l.b];
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y);
+    ctx.lineTo(B.x, B.y);
+    ctx.strokeStyle = "rgba(150,200,255,0.3)";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+}
 
-            ctx.save();
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(x,y,halo,0,Math.PI*2);
-            ctx.fill();
-            ctx.restore();
+/* Dibujar pulso */
+function drawPulse(p){
+    const l = links[p.link];
+    const A = nodes[l.a];
+    const B = nodes[l.b];
 
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(x,y,r,0,Math.PI*2);
-            const g2 = ctx.createRadialGradient(x,y,3,x,y,r);
-            g2.addColorStop(0, `rgba(255,249,196,${0.6 + 0.4*lampIntensity})`);
-            g2.addColorStop(1, `rgba(255,214,0,${0.4 + 0.4*lampIntensity})`);
-            ctx.fillStyle = g2;
+    const x = A.x + (B.x-A.x)*p.t;
+    const y = A.y + (B.y-A.y)*p.t;
 
-            ctx.shadowBlur = 15 + lampIntensity*20;
-            ctx.shadowColor = "rgba(255,241,118,0.9)";
-            ctx.fill();
-            ctx.shadowBlur = 0;
+    ctx.beginPath();
+    ctx.arc(x, y, 6, 0, Math.PI*2);
+    ctx.fillStyle = "#80e8ff";
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#80e8ff";
+    ctx.fill();
+    ctx.shadowBlur = 0;
 
-            ctx.beginPath();
-            ctx.rect(x - r*0.4, y + r*0.6, r*0.8, r*0.8);
-            ctx.fillStyle = "#757575";
-            ctx.fill();
+    if (l.b === 3 && p.t > 0.7){
+        lampExc += 0.05;
+    }
+}
 
-            ctx.restore();
+/* Animación */
+function animar(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-            ctx.fillStyle = "#fffde7";
-            ctx.font = "13px Arial";
-            ctx.textAlign = "center";
-            ctx.fillText(nodeLabel(n), x, y + 40 + r*0.8);
-        }
+    links.forEach(drawLink);
 
-        function drawPulse(p){
-            const link = links[p.link];
-            const a = nodes[link.a];
-            const b = nodes[link.b];
+    for (let i=pulses.length-1; i>=0; i--){
+        const p = pulses[i];
+        p.t += p.speed;
+        drawPulse(p);
+        if (p.t>=1) pulses.splice(i,1);
+    }
 
-            const ca = getNodeCoords(a);
-            const cb = getNodeCoords(b);
+    lampIntensity += (Math.min(1, lampExc) - lampIntensity)*0.1;
+    lampExc *= 0.85;
 
-            const x = ca.x + (cb.x - ca.x) * p.t;
-            const y = ca.y + (cb.y - ca.y) * p.t;
+    nodes.forEach(n => {
+        if (n.type==="LAMP") drawLamp(n);
+        else drawNode(n);
+    });
 
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(x,y,7,0,Math.PI*2);
-            ctx.fillStyle = "#80e8ff";
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = "#80e8ff";
-            ctx.fill();
-            ctx.restore();
+    requestAnimationFrame(animar);
+}
+animar();
 
-            if (link.b === 7 && p.t > 0.7){
-                lampExcitation += 0.08;
-            }
-        }
-
-        /* ================================
-           PULSOS
-        ================================= */
-        function spawnPulse(){
-            if (!energyOn) return;
-
-            links.forEach((_, i) =>{
-                const base = (i <=3) ? 1 : 0.6;
-                if (Math.random() < base){
-                    pulses.push({
-                        link: i,
-                        t: 0,
-                        speed: 0.006 + Math.random()*0.004
-                    });
-                }
-            });
-        }
-        setInterval(spawnPulse, 450);
-
-        /* ================================
-           ANIMACIÓN PRINCIPAL
-        ================================= */
-        function animate(){
-            ctx.clearRect(0,0, canvas.width, canvas.height);
-            drawBackground();
-
-            links.forEach(drawLink);
-
-            for (let i = pulses.length-1; i>=0; i--){
-                const p = pulses[i];
-                p.t += p.speed;
-                if (p.t >= 1){
-                    pulses.splice(i,1);
-                } else {
-                    drawPulse(p);
-                }
-            }
-
-            let target = energyOn ? Math.min(1, lampExcitation) : 0;
-            lampIntensity += (target - lampIntensity) * 0.10;
-            lampExcitation *= 0.85;
-
-            nodes.forEach(n => {
-                if (n.type === NODE.LAMP) drawLampNode(n);
-                else drawStandardNode(n);
-            });
-
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        /* ================================
-           BOTÓN ON/OFF
-        ================================= */
-        toggleEnergyBtn.addEventListener("click", () => {
-            energyOn = !energyOn;
-            toggleEnergyBtn.textContent = energyOn ?
-                "🔌 Couper l’énergie" :
-                "⚡ Rétablir l’énergie";
-        });
-
-        /* ================================
-           IDIOMA
-        ================================= */
-        const langButtons = document.querySelectorAll(".lang-btn");
-        function setLanguage(lang){
-            document.body.dataset.lang = lang;
-            langButtons.forEach(btn => {
-                btn.classList.toggle("active", btn.dataset.lang === lang);
-            });
-        }
-        langButtons.forEach(btn => {
-            btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-        });
-
-        /* ================================
-           MODO CLARO/OSCURO
-        ================================= */
-        const themeToggle = document.getElementById("themeToggle");
-        themeToggle.addEventListener("click", () =>{
-            document.body.classList.toggle("light-mode");
-            themeToggle.textContent = document.body.classList.contains("light-mode")
-                ? "☀️"
-                : "🌙";
-        });
-    </script>
+/* Botón ON/OFF */
+btn.onclick = () => {
+    energyOn = !energyOn;
+    btn.textContent = energyOn ? "🔌 Couper l'énergie" : "⚡ Rétablir l'énergie";
+};
+</script>
 
 </body>
 </html>
