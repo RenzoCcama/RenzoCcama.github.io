@@ -1,1 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RenzoCcama – Portfolio Énergie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* =============== ESTILOS GENERALES =============== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #0b1120;
+            color: #e5f2ff;
+        }
+
+        /* =============== NAVBAR =============== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: rgba(10, 18, 40, 0.96);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 34px;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            font-weight: 700;
+            color: #4dd0e1;
+        }
+
+        .navbar-links a {
+            margin-left: 22px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            color: #cfd8ff;
+            transition: 0.2s;
+        }
+
+        .navbar-links a:hover {
+            color: #4dd0e1;
+        }
+
+        /* =============== SECCIONES =============== */
+        section {
+            padding: 110px 50px 60px 50px; /* margen top grande por la navbar */
+        }
+
+        section h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            color: #4dd0e1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        section p {
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 900px;
+            margin-bottom: 8px;
+        }
+
+        /* =============== CANVAS ELÉCTRICO =============== */
+        #gridCanvas {
+            width: 100%;
+            height: 55vh;
+            margin-top: 20px;
+            border-radius: 14px;
+            background: radial-gradient(circle at top, #122344, #050814 70%);
+            border: 1px solid #243356;
+            display: block;
+        }
+
+        /* BOTÓN energía */
+        #toggleEnergy {
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: none;
+            background: #1e88e5;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        #toggleEnergy:hover {
+            background: #1565c0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .navbar-links {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .navbar-links a {
+                margin-left: 0;
+                margin-right: 16px;
+            }
+
+            section {
+                padding: 120px 18px 50px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =============== NAVBAR =============== -->
+    <header class="navbar">
+        <div class="navbar-brand">RenzoCcama</div>
+        <nav class="navbar-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#apropos">À propos de moi</a>
+            <a href="#projets">Mes projets</a>
+            <a href="#competences">Compétences</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- =============== 1. ACCUEIL =============== -->
+    <section id="accueil">
+        <h2>ACCUEIL</h2>
+
+        <!-- TEXTO EDITABLE -->
+        <p><strong>Texto editable:</strong>  
+        Bienvenue sur mon portfolio. Je m’appelle <strong>Renzo Andrés Ccama Ordoñez</strong>, 
+        ingénieur en formation spécialisé en énergie, réseaux et environnement.</p>
+
+        <p><strong>Simulation électrique animée :</strong>  
+        Ci-dessous, une visualisation simple d’un réseau électrique : générateur → sous-station → maison → lampe.</p>
+
+        <button id="toggleEnergy">🔌 Couper l’énergie</button>
+        <canvas id="gridCanvas"></canvas>
+    </section>
+
+    <!-- =============== 2. À PROPOS DE MOI =============== -->
+    <section id="apropos">
+        <h2>À PROPOS DE MOI</h2>
+
+        <!-- TEXTO EDITABLE -->
+        <p><strong>Texto editable:</strong>  
+        Je suis étudiant en double diplôme à l’IMT Atlantique, spécialisé en Transition Énergétique
+        et systèmes environnementaux. Originaire du Pérou, j’ai une formation initiale en ingénierie
+        environnementale et une forte motivation pour contribuer à la performance énergétique,
+        aux réseaux multi-énergies et à la transition bas-carbone.</p>
+    </section>
+
+    <!-- =============== 3. MES PROJETS =============== -->
+    <section id="projets">
+        <h2>MES PROJETS</h2>
+
+        <!-- TEXTO EDITABLE -->
+        <p><strong>Texto editable (liste de projets) :</strong></p>
+        <p>• Modélisation de réseaux de chaleur (scénarios SC1 à SC5)<br>
+           • Analyses de consommation énergétique (Python, Excel, Power BI)<br>
+           • Projets SIG : cartographie, délimitations de bassins, analyses spatiales (ArcGIS, QGIS)<br>
+           • Études de performance énergétique pour bâtiments et procédés industriels<br>
+        </p>
+    </section>
+
+    <!-- =============== 4. COMPÉTENCES =============== -->
+    <section id="competences">
+        <h2>COMPÉTENCES</h2>
+
+        <!-- TEXTO EDITABLE -->
+        <p><strong>Texte editable (hard skills) :</strong></p>
+        <p>• SIG : ArcGIS Pro, ArcGIS Online, QGIS<br>
+           • Modélisation & data : Python, R, Excel avancé, Power BI<br>
+           • CAO/BIM : AutoCAD, Civil 3D, Revit<br>
+           • Énergie : réseaux thermiques, systèmes multi-énergies, indicateurs énergie/carbone<br>
+        </p>
+
+        <p><strong>Texte editable (soft skills) :</strong></p>
+        <p>• Travail en équipe multiculturelle<br>
+           • Capacité d’analyse et synthèse<br>
+           • Autonomie et rigueur<br>
+           • Communication technique en français, espagnol et anglais<br>
+        </p>
+    </section>
+
+    <!-- =============== 5. CONTACT =============== -->
+    <section id="contact">
+        <h2>CONTACT</h2>
+
+        <!-- TEXTO EDITABLE -->
+        <p><strong>Email :</strong> renzo.ccama.ord@gmail.com</p>
+        <p><strong>LinkedIn :</strong> 
+            <a href="https://www.linkedin.com/in/renzoccamaor" style="color:#4dd0e1;" target="_blank">
+                linkedin.com/in/renzoccamaor
+            </a>
+        </p>
+        <p><strong>Localisation :</strong> Nantes, France</p>
+    </section>
+
+    <!-- =============== SCRIPT CANVAS ELÉCTRICO =============== -->
+    <script>
+        const canvas = document.getElementById("gridCanvas");
+        const ctx = canvas.getContext("2d");
+        const toggleBtn = document.getElementById("toggleEnergy");
+
+        let energyOn = true;
+        let lampIntensity = 0; // 0 a 1
+        let lampExcitation = 0;
+        let nodes = [];
+        const links = [
+            { a: 0, b: 1 },
+            { a: 1, b: 2 },
+            { a: 2, b: 3 }
+        ];
+        let pulses = [];
+
+        function resizeCanvas() {
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+
+            // Reposicionar nodos cuando cambia el tamaño
+            nodes = [
+                { x: canvas.width * 0.15, y: canvas.height * 0.50, type: "GEN",  label: "Générateur" },
+                { x: canvas.width * 0.45, y: canvas.height * 0.35, type: "SUB",  label: "Sous-station" },
+                { x: canvas.width * 0.75, y: canvas.height * 0.45, type: "DIST", label: "Maison" },
+                { x: canvas.width * 0.88, y: canvas.height * 0.60, type: "LAMP", label: "Lampe" }
+            ];
+        }
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        function drawBackground() {
+            const grd = ctx.createRadialGradient(
+                canvas.width * 0.5, canvas.height * 0.1, 30,
+                canvas.width * 0.5, canvas.height * 0.9,
+                Math.max(canvas.width, canvas.height)
+            );
+            grd.addColorStop(0, "rgba(90, 155, 255, 0.18)");
+            grd.addColorStop(1, "rgba(0, 0, 0, 0.90)");
+            ctx.fillStyle = grd;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawLink(l) {
+            const A = nodes[l.a];
+            const B = nodes[l.b];
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.strokeStyle = "rgba(160, 210, 255, 0.35)";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        function drawNode(n) {
+            if (n.type === "LAMP") {
+                drawLamp(n);
+                return;
+            }
+
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 18, 0, Math.PI * 2);
+            let color =
+                n.type === "GEN"  ? "#00e676" :
+                n.type === "SUB"  ? "#26c6da" :
+                n.type === "DIST" ? "#ffd54f" :
+                                     "#ef5350";
+
+            ctx.fillStyle = color;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = color;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.fillStyle = "#e3f2fd";
+            ctx.font = "14px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(n.label, n.x, n.y + 30);
+        }
+
+        function drawLamp(n) {
+            const rBase = 14;
+            const r = rBase + lampIntensity * 6;
+
+            const haloRadius = r + 18;
+            const gHalo = ctx.createRadialGradient(n.x, n.y, r, n.x, n.y, haloRadius);
+            gHalo.addColorStop(0, `rgba(255, 241, 118, ${0.4 * lampIntensity})`);
+            gHalo.addColorStop(1, "rgba(255, 241, 118, 0)");
+
+            ctx.beginPath();
+            ctx.fillStyle = gHalo;
+            ctx.arc(n.x, n.y, haloRadius, 0, Math.PI * 2);
+            ctx.fill();
+
+            const gBulb = ctx.createRadialGradient(n.x, n.y, 4, n.x, n.y, r);
+            gBulb.addColorStop(0, `rgba(255, 253, 231, ${0.6 + 0.3 * lampIntensity})`);
+            gBulb.addColorStop(1, `rgba(255, 214, 0, ${0.5 + 0.3 * lampIntensity})`);
+
+            ctx.beginPath();
+            ctx.fillStyle = gBulb;
+            ctx.shadowBlur = 15 + lampIntensity * 15;
+            ctx.shadowColor = "rgba(255, 241, 118, 0.9)";
+            ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.fillStyle = "#fffde7";
+            ctx.font = "14px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Lampe", n.x, n.y + 30);
+        }
+
+        function drawPulse(p) {
+            const link = links[p.link];
+            const A = nodes[link.a];
+            const B = nodes[link.b];
+
+            const x = A.x + (B.x - A.x) * p.t;
+            const y = A.y + (B.y - A.y) * p.t;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = "#80e8ff";
+            ctx.shadowBlur = 14;
+            ctx.shadowColor = "#80e8ff";
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            if (link.b === 3 && p.t > 0.7) {
+                lampExcitation += 0.06;
+            }
+        }
+
+        function spawnPulse() {
+            if (!energyOn) return;
+            links.forEach((_, i) => {
+                pulses.push({
+                    link: i,
+                    t: 0,
+                    speed: 0.01
+                });
+            });
+        }
+
+        setInterval(spawnPulse, 500);
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+
+            links.forEach(drawLink);
+
+            for (let i = pulses.length - 1; i >= 0; i--) {
+                const p = pulses[i];
+                p.t += p.speed;
+                drawPulse(p);
+                if (p.t >= 1) {
+                    pulses.splice(i, 1);
+                }
+            }
+
+            const target = energyOn ? Math.min(1, lampExcitation) : 0;
+            lampIntensity += (target - lampIntensity) * 0.12;
+            lampExcitation *= 0.85;
+
+            nodes.forEach(drawNode);
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        toggleBtn.addEventListener("click", () => {
+            energyOn = !energyOn;
+            toggleBtn.textContent = energyOn ? "🔌 Couper l’énergie"
+                                             : "⚡ Rétablir l’énergie";
+        });
+    </script>
+
+</body>
+</html>
 
