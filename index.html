@@ -1,175 +1,125 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>RenzoCcama – Portfolio Énergie</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renzo - Page d'accueil</title>
 
-<style>
-/* ======= ESTILOS GENERALES ======= */
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #ffffff; /* blanco */
-    color: #2e3f44; /* gris frío */
-    margin: 0;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #0a3d3f; /* Turquesa frío oscuro */
+        }
 
-/* ======= NAVBAR ======= */
-.navbar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    background: rgba(255,255,255,0.9);
-    border-bottom: 2px solid rgba(64,224,208,0.25); /* turquesa frío */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 34px;
-    z-index: 1000;
-}
+        header {
+            background-color: #0fb9b1; /* Turquesa */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-.navbar-brand {
-    font-size: 22px;
-    font-weight: 700;
-    color: #0b2b36; /* azul petróleo frío */
-}
+        nav {
+            background-color: #0a3d3f; /* Turquesa frío oscuro */
+            padding: 10px 0;
+            text-align: center;
+        }
 
-.navbar-links a {
-    margin-left: 22px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 17px;
-    color: #2e3f44;
-    transition: 0.25s;
-}
+        nav a {
+            color: white;
+            margin: 0 20px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-.navbar-links a:hover {
-    color: #40E0D0; /* turquesa */
-}
+        section {
+            padding: 40px 10%;
+            border-bottom: 1px solid #e0e0e0;
+        }
 
-/* ======= SECCIONES ======= */
-section {
-    padding: 120px 50px 60px 50px;
-}
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #0a3d3f;
+        }
 
-section h2 {
-    font-size: 38px;
-    margin-bottom: 10px;
-    color: #40E0D0; /* turquesa frío */
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
 
-section p {
-    font-size: 18px;
-    max-width: 900px;
-    line-height: 1.7;
-    color: #2e3f44; /* gris frío */
-}
-
-/* ======= RESPONSIVE ======= */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-        gap: 6px;
-    }
-
-    .navbar-links a {
-        margin-left: 0;
-        margin-right: 12px;
-    }
-
-    section {
-        padding: 130px 18px 50px 18px;
-    }
-}
-</style>
+        footer {
+            background-color: #0a3d3f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- ======= NAVBAR ======= -->
-<header class="navbar">
-    <div class="navbar-brand">RenzoCcama</div>
-    <nav class="navbar-links">
-        <a href="#accueil">Accueil</a>
-        <a href="#apropos">À propos de moi</a>
+    <header>
+        <h1>Renzo CCAMA</h1>
+        <p>Transition Énergétique – Ingénierie & Systèmes</p>
+    </header>
+
+    <nav>
+        <a href="#acerca">Acerca de mí</a>
         <a href="#projets">Mes projets</a>
-        <a href="#competences">Compétences</a>
+        <a href="#competencias">Compétences</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
     </nav>
-</header>
 
-<!-- ======= 1. ACCUEIL ======= -->
-<section id="accueil">
-    <h2>ACCUEIL</h2>
+    <!-- ACERCA DE MI -->
+    <section id="acerca">
+        <h2>Acerca de mí</h2>
+        <p>
+            (Aquí escribes tu texto personal. Puedes presentarte, hablar de tu formación,
+            tu especialidad en transición energética, tus experiencias y tus objetivos profesionales.)
+        </p>
+    </section>
 
-    <p><strong>Présentation :</strong>  
-    Bienvenue sur mon portfolio. Je m’appelle <strong>Renzo Andrés Ccama Ordoñez</strong>, ingénieur en formation spécialisé en énergie, réseaux multi-énergies et environnement.</p>
+    <!-- MES PROJETS -->
+    <section id="projets">
+        <h2>Mes projets</h2>
+        <p>
+            (Describe tus proyectos académicos, trabajos técnicos, modelamientos energéticos,
+            GIS, simulaciones, etc.)
+        </p>
+    </section>
 
-    <p>Ce site présente mes projets techniques, mes compétences et mon parcours dans la transition énergétique.</p>
-</section>
+    <!-- COMPETENCIAS -->
+    <section id="competencias">
+        <h2>Compétences</h2>
+        <p>
+            (Aquí colocas tus competencias: SIG, Python, modelado energético, AutoCAD, etc.)
+        </p>
+    </section>
 
-<!-- ======= 2. À PROPOS ======= -->
-<section id="apropos">
-    <h2>À PROPOS DE MOI</h2>
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <p>
+            (Coloca imágenes, enlaces a proyectos de GitHub, dashboards, mapas, etc.)
+        </p>
+    </section>
 
-    <p>Je suis étudiant en double diplôme à l’IMT Atlantique (Nantes, France), spécialisé en Transition Énergétique, systèmes multi-énergies et ingénierie de l’environnement.</p>
+    <!-- CONTACTO -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: renzo.ccama.ord@gmail.com</p>
+        <p>LinkedIn: <a href="#" style="color:#0fb9b1;">linkedin.com/in/renzoccamaor</a></p>
+    </section>
 
-    <p>Originaire du Pérou, ma formation initiale en ingénierie environnementale m’a permis d’acquérir une solide base en analyses énergétiques, SIG, gestion environnementale et optimisation de procédés.</p>
-</section>
-
-<!-- ======= 3. MES PROJETS ======= -->
-<section id="projets">
-    <h2>MES PROJETS</h2>
-
-    <p><strong>Projets académiques et professionnels :</strong></p>
-
-    <p>
-    • Modélisation de réseaux de chaleur (SC1 à SC5)<br>
-    • Analyse énergétique (Python, Excel, Power BI)<br>
-    • SIG : ArcGIS Pro, QGIS, traitement de données spatiales<br>
-    • Optimisation de réseaux énergétiques (électricité, chaleur)<br>
-    • Projets environnementaux : qualité d’air, gestion HSE, IGA<br>
-    </p>
-</section>
-
-<!-- ======= 4. COMPÉTENCES ======= -->
-<section id="competences">
-    <h2>COMPÉTENCES</h2>
-
-    <p><strong>Hard Skills :</strong></p>
-    <p>
-    • SIG : ArcGIS Pro, ArcGIS Online, QGIS<br>
-    • Data & modélisation : Python, R, Excel avancé, Power BI<br>
-    • CAO/BIM : AutoCAD, Civil 3D, Revit<br>
-    • Énergie : réseaux thermiques, systèmes multi-énergies, efficacité énergétique<br>
-    </p>
-
-    <p><strong>Soft Skills :</strong></p>
-    <p>
-    • Travail en équipe multiculturelle<br>
-    • Gestion du temps et autonomie<br>
-    • Analyse, synthèse et communication technique<br>
-    </p>
-</section>
-
-<!-- ======= 5. CONTACT ======= -->
-<section id="contact">
-    <h2>CONTACT</h2>
-
-    <p><strong>Email :</strong> renzo.ccama.ord@gmail.com</p>
-
-    <p><strong>LinkedIn :</strong>  
-        <a href="https://www.linkedin.com/in/renzoccamaor" style="color:#40E0D0;" target="_blank">
-            linkedin.com/in/renzoccamaor
-        </a>
-    </p>
-
-    <p><strong>Localisation :</strong> Nantes, France</p>
-</section>
+    <footer>
+        © 2025 Renzo CCAMA – Tous droits réservés
+    </footer>
 
 </body>
 </html>
+
